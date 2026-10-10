@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>TRY OUT 1 MATEMATIKA LANJUTAN</title>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--ink:#14263f;--mut:#51637d;--pri:#1d4ed8;--deep:#0b3a8c;--line:#c6d8f5;--soft:#e8f0fe;--ok:#15803d;--bad:#b91c1c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);background:#eaf2ff}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font:17px/1.6 "Latin Modern Roman","CMU Serif","STIX Two Text","Times New Roman",serif;-webkit-text-size-adjust:100%;
+background:
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='%231d4ed8' fill-opacity='.09' font-family='serif' font-size='34'%3E%3Ctext x='14' y='42'%3E%CF%80%3C/text%3E%3Ctext x='128' y='64'%3E%E2%88%91%3C/text%3E%3Ctext x='64' y='140'%3E%E2%88%9A%3C/text%3E%3Ctext x='160' y='168'%3Ex%C2%B2%3C/text%3E%3Ctext x='20' y='214'%3E%E2%88%AB%3C/text%3E%3Ctext x='118' y='222'%3E%CE%B8%3C/text%3E%3C/g%3E%3Cpath d='M170 100q12-22 24 0t24 0' stroke='%231d4ed8' stroke-opacity='.12' fill='none' stroke-width='2'/%3E%3C/svg%3E"),
+linear-gradient(rgba(29,78,216,.06) 1px,transparent 1px) 0 0/32px 32px,
+linear-gradient(90deg,rgba(29,78,216,.06) 1px,transparent 1px) 0 0/32px 32px,
+linear-gradient(160deg,#f4f9ff,#e3eeff 60%,#dbe9ff)}
+.wrap{max-width:780px;margin:0 auto;padding:14px 14px 40px}
+.hide{display:none!important}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:18px 18px 20px;margin:14px 0;box-shadow:0 6px 18px rgba(29,78,216,.08)}
+h1{margin:0;font-size:1.7rem;line-height:1.2;color:var(--deep)}
+.hero{border-left:7px solid var(--pri);padding-left:14px;margin:26px 0 8px}
+.hero p{margin:6px 0 0;color:var(--mut)}
+label.f{display:block;font-weight:600;margin:14px 0 4px}
+input[type=text]{width:100%;font:inherit;padding:12px 14px;border:1.5px solid #9db8e8;border-radius:10px;background:#fbfdff;color:var(--ink)}
+input[type=text]:focus,button:focus-visible,.opt:focus-within{outline:3px solid #7aa2f7;outline-offset:2px}
+.err{color:var(--bad);min-height:1.4em;margin:8px 0 0;font-size:.95rem}
+.btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:13px 22px;min-height:48px;background:var(--pri);color:#fff;cursor:pointer;touch-action:manipulation}
+.btn.alt{background:#fff;color:var(--deep);border:1.5px solid var(--pri)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.full{width:100%;margin-top:16px}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--deep);color:#fff;padding:10px 16px;border-radius:0 0 14px 14px;box-shadow:0 4px 14px rgba(11,58,140,.3)}
+.topbar b{font-size:.95rem;line-height:1.2}
+#tm{font-variant-numeric:tabular-nums;font-size:1.35rem;font-weight:700;background:rgba(255,255,255,.15);padding:2px 12px;border-radius:8px}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0 0}
+.nv{font:inherit;font-weight:700;min-height:46px;border-radius:10px;border:1.5px solid #9db8e8;background:#fff;color:var(--deep);cursor:pointer;touch-action:manipulation}
+.nv.done{background:#cfe0ff}
+.nv.cur{border:3px solid var(--deep);background:var(--pri);color:#fff}
+.qno{color:var(--pri);font-weight:700;margin-bottom:6px}
+.qtext{overflow-x:auto;overflow-y:hidden;padding:2px 0 6px}
+.fig{overflow-x:auto;margin:6px 0 10px;text-align:center}
+.fig svg{max-width:100%;height:auto}
+.opts{display:grid;gap:10px;margin-top:10px}
+.opts.g{grid-template-columns:1fr}
+@media(min-width:620px){.opts.g{grid-template-columns:1fr 1fr}}
+.opt{display:flex;gap:10px;align-items:center;padding:11px 13px;min-height:50px;border:1.5px solid var(--line);border-radius:12px;background:#fbfdff;cursor:pointer}
+.opt.on{border-color:var(--pri);background:#e3edff;box-shadow:inset 0 0 0 1px var(--pri)}
+.opt input{width:22px;height:22px;flex:none;accent-color:var(--pri)}
+.opt>span{overflow-x:auto;overflow-y:hidden;min-width:0;flex:1}
+.opt.gr{align-items:flex-start;flex-wrap:wrap}
+.opt.gr>span{flex:1 0 100%}
+.tfr{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;background:#fbfdff}
+.seg{display:flex;gap:10px;margin-top:8px}
+.seg .opt{flex:1;justify-content:center;margin:0}
+.ctl{display:flex;justify-content:space-between;gap:10px;margin-top:6px}
+.ctl .btn{flex:1}
+.modal{position:fixed;inset:0;background:rgba(10,25,60,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal .card{max-width:420px;margin:0}
+.big{font-size:5.2rem;line-height:1;font-weight:700;margin:6px 0}
+.res{text-align:center}
+.stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;color:var(--mut)}
+.stats b{color:var(--ink)}
+.cm{text-align:left;background:var(--soft);border-radius:12px;padding:14px 16px;margin-top:16px}
+.cm p{margin:0 0 8px}.cm p:last-child{margin:0}
+.ft{text-align:center;color:var(--mut);font-size:.9rem;margin-top:22px}
+@media(prefers-reduced-motion:no-preference){.btn{transition:transform .08s}.btn:active{transform:scale(.97)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="s1">
+  <div class="hero"><h1>TRY OUT 1 MATEMATIKA LANJUTAN</h1><p>10 soal. Waktu berjalan sejak tombol Mulai ditekan.</p></div>
+  <div class="card">
+    <label class="f" for="nm">Nama</label><input id="nm" type="text" autocomplete="name" maxlength="60">
+    <label class="f" for="kl">Kelas</label><input id="kl" type="text" maxlength="20">
+    <p class="err" id="er" role="alert"></p>
+    <button class="btn full" id="go">Mulai Mengerjakan</button>
+  </div>
+  <p class="ft">Dibuat oleh Pak Eka</p>
+</section>
+
+<section id="s2" class="hide">
+  <div class="topbar"><b>TRY OUT 1<br>MATEMATIKA LANJUTAN</b><span id="tm">00:00</span></div>
+  <div class="nav" id="nav"></div>
+  <div class="card" id="qbox"></div>
+  <div class="ctl"><button class="btn alt" id="pv">Sebelumnya</button><button class="btn" id="nx">Berikutnya</button></div>
+</section>
+
+<section id="s3" class="hide">
+  <div class="card res">
+    <p id="gr" style="font-size:1.35rem;font-weight:700;color:var(--deep);margin:0 0 4px"></p>
+    <div class="big" id="sc"></div>
+    <div style="color:var(--mut)">nilai akhir</div>
+    <div class="stats" id="st" style="margin-top:12px"></div>
+    <div class="cm" id="cm"></div>
+    <button class="btn full" id="pdf">Unduh Laporan (PDF)</button>
+    <p class="err" id="pe" style="color:var(--mut)"></p>
+  </div>
+  <p class="ft">Dibuat oleh Pak Eka</p>
+</section>
+
+</div>
+<div class="modal hide" id="md"><div class="card"><p id="mt" style="margin-top:0"></p><div class="ctl"><button class="btn alt" id="mb">Kembali</button><button class="btn" id="my">Kumpulkan</button></div></div></div>
+
+<script>
+const TITLE='TRY OUT 1 MATEMATIKA LANJUTAN',MAKER='Pak Eka',M=String.raw,$=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- Figur SVG ---------- */
+const FF="font-family=\"'Latin Modern Roman','CMU Serif','STIX Two Text','Times New Roman',serif\"";
+function graph(f){
+  const W=430,H=300,L=64,R=26,T=18,B=40,X=285,px=x=>L+x/X*(W-L-R),py=y=>T+(2-y)/4*(H-T-B);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:430px" xmlns="http://www.w3.org/2000/svg" ${FF} font-size="13" role="img" aria-label="Grafik fungsi">`;
+  [[-1.5,'−3/2'],[-.5,'−1/2'],[.5,'1/2'],[1,'1'],[1.5,'3/2']].forEach(([v,t])=>{
+    s+=`<line x1="${L}" x2="${px(270)}" y1="${py(v)}" y2="${py(v)}" stroke="#9db0cc" stroke-dasharray="2 3"/><text x="${L-8}" y="${py(v)+4}" text-anchor="end">${t}</text>`});
+  for(let d=45;d<=270;d+=45)s+=`<line x1="${px(d)}" x2="${px(d)}" y1="${py(1.9)}" y2="${py(-1.9)}" stroke="#9db0cc" stroke-dasharray="2 3"/><text x="${px(d)}" y="${H-12}" text-anchor="middle">${d}°</text>`;
+  s+=`<line x1="${L}" x2="${W-R+8}" y1="${py(0)}" y2="${py(0)}" stroke="#14263f" stroke-width="1.4"/><path d="M${W-R+10} ${py(0)}l-8-4v8z" fill="#14263f"/><text x="${W-R+4}" y="${py(0)+20}" font-style="italic">x</text>`;
+  s+=`<line x1="${L}" x2="${L}" y1="${py(-2)+6}" y2="${T-4}" stroke="#14263f" stroke-width="1.4"/><path d="M${L} ${T-8}l-4 8h8z" fill="#14263f"/><text x="${L+8}" y="${T+2}" font-style="italic">y</text>`;
+  let d='';for(let x=0;x<=270;x+=3)d+=(x?'L':'M')+px(x).toFixed(1)+' '+py(f(x*Math.PI/180)).toFixed(1);
+  return s+`<path d="${d}" fill="none" stroke="#1d4ed8" stroke-width="2.4"/></svg>`;
+}
+const river=`<svg viewBox="0 0 420 240" width="100%" style="max-width:420px" xmlns="http://www.w3.org/2000/svg" ${FF} font-size="14" role="img" aria-label="Perahu menyeberangi sungai">
+<rect x="0" y="60" width="420" height="120" fill="#cfe3ff"/><rect x="0" y="20" width="420" height="40" fill="#d9ecd0"/><rect x="0" y="180" width="420" height="40" fill="#d9ecd0"/>
+<line x1="0" x2="420" y1="60" y2="60" stroke="#14263f"/><line x1="0" x2="420" y1="180" y2="180" stroke="#14263f"/>
+<line x1="150" y1="180" x2="150" y2="62" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="150" y1="180" x2="240" y2="62" stroke="#b91c1c" stroke-width="2.4"/><path d="M240 60l-9 4 4 7z" fill="#b91c1c"/>
+<line x1="150" y1="60" x2="240" y2="60" stroke="#14263f" stroke-width="3" stroke-dasharray="4 3"/>
+<circle cx="150" cy="180" r="4.5"/><circle cx="150" cy="60" r="4.5"/><circle cx="240" cy="60" r="4.5"/>
+<text x="150" y="203" text-anchor="middle">A</text><text x="150" y="44" text-anchor="middle">B</text><text x="240" y="44" text-anchor="middle">P</text>
+<text x="195" y="52" text-anchor="middle" font-size="12" dy="-14">? meter</text>
+<text x="142" y="128" text-anchor="end" fill="#1d4ed8">perahu</text><text x="142" y="146" text-anchor="end" fill="#1d4ed8">12 m/menit</text>
+<line x1="30" y1="62" x2="30" y2="178" stroke="#14263f"/><path d="M30 60l-4 8h8zM30 180l-4-8h8z" fill="#14263f"/>
+<text x="18" y="120" text-anchor="middle" transform="rotate(-90 18 120)">60 m</text>
+<line x1="290" y1="130" x2="395" y2="130" stroke="#14263f" stroke-width="2"/><path d="M399 130l-9-4v8z" fill="#14263f"/>
+<text x="344" y="118" text-anchor="middle">arus 9 m/menit</text>
+<text x="395" y="212" text-anchor="end" font-size="12">P = posisi perahu saat tiba</text></svg>`;
+
+/* ---------- Soal ---------- */
+const Q=[
+{t:'Matriks (Transpose)',k:'num',key:-10,x:M`Diketahui matriks \(A=\begin{pmatrix}2&0\\4&3\end{pmatrix}\), \(B=\begin{pmatrix}x&-2\\y&1\end{pmatrix}\), dan \(C=\begin{pmatrix}1&10\\5&10\end{pmatrix}\). \(A^{T}\) adalah transpose matriks \(A\). Jika \(3A^{T}+B=C\), maka nilai \(x-y\) adalah …`},
+{t:'Periode Fungsi Trigonometri',k:'mc',key:'C',x:M`Diketahui fungsi trigonometri \(f(x)=-4\cos(3x-60^\circ)+1\). Periode fungsi \(f(x)\) adalah …`,o:[M`\(60^\circ\)`,M`\(90^\circ\)`,M`\(120^\circ\)`,M`\(180^\circ\)`,M`\(1.080^\circ\)`]},
+{t:'Grafik Fungsi Trigonometri',k:'mc',key:'B',g:1,x:M`Di bawah ini yang merupakan grafik fungsi \(y=\cos(2x)+\tfrac{1}{2}\) adalah …`,
+ o:[graph(t=>Math.sin(2*t)+.5),graph(t=>Math.cos(2*t)+.5),graph(t=>Math.cos(t)+.5),graph(t=>Math.cos(2*t)-.5),graph(t=>-Math.cos(2*t)+.5)]},
+{t:'Kecepatan Relatif (Aplikasi Vektor)',k:'mc',key:'C',fig:river,x:M`Suatu perahu akan menyeberangi sungai selebar 60 meter dari titik \(A\) di pinggir sungai. Kecepatan arus sungai 9 meter/menit sejajar dengan pinggiran sungai dengan arah ke hilir dan kecepatan perahu 12 meter/menit dengan arah tegak lurus dengan arah arus sungai. Jika \(B\) berada di seberang sungai dan berjarak terdekat dengan posisi \(A\), jarak titik perahu pada saat sampai di seberang sungai dan titik \(B\) adalah … meter.`,o:['36','40','45','48','50']},
+{t:'Persamaan Lingkaran',k:'multi',key:['B','C'],x:M`Diketahui persamaan lingkaran \(x^{2}+y^{2}+4x-6y-12=0\). Di antara lima pernyataan berikut, tentukan pernyataan yang benar! <i>Jawaban benar lebih dari satu.</i>`,
+ o:[M`Lingkaran tersebut berpusat di \((2,-3)\).`,'Panjang jari-jari lingkaran tersebut 5 satuan panjang.','Jarak pusat lingkaran dengan sumbu-\\(x\\) adalah 3.','Jarak pusat lingkaran dengan sumbu-\\(y\\) adalah 3.',M`Garis \(x=4\) memotong lingkaran di dua titik.`]},
+{t:'Transformasi Geometri',k:'mc',key:'E',x:M`Bayangan dari kurva \(y=3x^{2}-2\) yang ditranslasikan oleh matriks \(\begin{pmatrix}2\\-1\end{pmatrix}\) kemudian didilatasikan oleh \((O,3)\) dengan \(O\) merupakan titik koordinat \((0,0)\) adalah …`,
+ o:[M`\(y=x^{2}+12x+27\)`,M`\(y=\tfrac{1}{3}x^{2}-4x+9\)`,M`\(y=3x^{2}-12x+9\)`,M`\(y=x^{2}-12x+33\)`,M`\(y=x^{2}-12x+27\)`]},
+{t:'Limit Fungsi Aljabar',k:'mc',key:'B',x:M`Nilai dari \(\displaystyle\lim_{x\to1}\frac{x^{2}+2x-3}{3-\sqrt{x^{2}+8}}=\) …`,o:[M`\(-24\)`,M`\(-12\)`,M`\(0\)`,M`\(12\)`,M`\(24\)`]},
+{t:'Limit Tak Hingga (Bentuk Akar)',k:'mc',key:'C',x:M`Nilai dari \(\displaystyle\lim_{x\to\infty}\left(\sqrt{4x+1}-\sqrt{4x-5}\right)\sqrt{4x+3}\) adalah …`,o:[M`\(0\)`,M`\(\tfrac{3}{2}\)`,M`\(3\)`,M`\(6\)`,M`\(12\)`]},
+{t:'Invers Matriks',k:'multi',key:['A','C','D'],x:M`Diketahui \(M=\begin{pmatrix}3&4\\2&3\end{pmatrix}\) dan \(M^{-1}\) melambangkan invers dari \(M\). Berapakah nilai \(p\) dan \(q\) yang tepat memenuhi \(pM^{-1}=q\begin{pmatrix}9&-12\\-6&9\end{pmatrix}\)? Pilih semua jawaban benar! <i>Jawaban benar lebih dari satu.</i>`,
+ o:[M`\(p=3\) dan \(q=1\)`,M`\(p=6\) dan \(q=3\)`,M`\(p=9\) dan \(q=3\)`,M`\(p=12\) dan \(q=4\)`,M`\(p=10\) dan \(q=3\)`]},
+{t:'Fungsi Eksponensial',k:'tf',key:[false,true,true],x:M`Seorang pemilik toko daring memperkirakan banyaknya pengikut akun tokonya (dalam ratusan) di media sosial mengikuti model \(g(t)=4\cdot 3^{t}\) dengan \(t\) adalah banyaknya minggu sejak akun dibuat. Tentukan Benar atau Salah untuk setiap pernyataan berikut!`,
+ o:['Akun tersebut hanya memiliki 1.200 pengikut setelah tepat 14 hari dibuat.','Banyaknya pengikut akun menjadi tiga kali lipat dari minggu sebelumnya untuk beberapa minggu setelah akun dibuat.','Model banyaknya pengikut ini tidak tepat untuk waktu yang cukup besar.']}
+];
+const LT='ABCDE';
+let ans,cur,t0,tick,res,info={};
+
+/* ---------- Penilaian ---------- */
+const isAns=(q,a)=>q.k==='mc'?a!==null:q.k==='multi'?a.length>0:q.k==='num'?String(a).trim()!=='':a.some(v=>v!==null);
+function frac(q,a){
+  if(!isAns(q,a))return 0;
+  if(q.k==='mc')return a===q.key?1:0;
+  if(q.k==='num')return parseFloat(String(a).replace(/[−–]/g,'-').replace(',','.').replace(/\s/g,''))===q.key?1:0;
+  if(q.k==='multi')return LT.split('').filter(l=>a.includes(l)===q.key.includes(l)).length/5;
+  return q.key.filter((v,i)=>a[i]===v).length/3;
+}
+const shown=(q,a)=>!isAns(q,a)?'-':q.k==='mc'?a:q.k==='multi'?a.join(', '):q.k==='num'?String(a).trim():a.map(v=>v===null?'-':v?'Benar':'Salah').join(', ');
+const fmt=s=>`${Math.floor(s/60)} menit ${s%60} detik`;
+const jn=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' dan '+a[a.length-1];
+
+function compute(){
+  const el=Math.floor((Date.now()-t0)/1000);
+  const rows=Q.map((q,i)=>{const f=frac(q,ans[i]),e=!isAns(q,ans[i]);return{n:i+1,t:q.t,a:shown(q,ans[i]),f,st:e?'Kosong':f===1?'Benar':'Kurang Tepat'}});
+  const nilai=Math.round(rows.reduce((s,r)=>s+r.f,0)/Q.length*100);
+  const c=k=>rows.filter(r=>r.st===k).length;
+  const tier=nilai>=80?[21,128,61]:nilai>=60?[217,119,6]:[185,28,28];
+  return{rows,nilai,el,b:c('Benar'),kt:c('Kurang Tepat'),ko:c('Kosong'),tier,
+    pred:nilai>=90?'Istimewa':nilai>=80?'Sangat Baik':nilai>=70?'Baik':nilai>=60?'Cukup':'Perlu Ditingkatkan'};
+}
+function speed(r){
+  const m=r.el/60,hi=r.nilai>=70;
+  if(m<15)return hi?'Kamu mengerjakan dengan cepat dan hasilnya tepat. Pertahankan, tetapi tetap sisakan waktu untuk memeriksa ulang.':'Kamu mengerjakan sangat cepat, tetapi hasilnya belum maksimal. Coba lebih pelan, baca soal dengan teliti, dan periksa ulang sebelum mengumpulkan.';
+  if(m<=40)return hi?'Kecepatan mengerjakanmu sudah sesuai dan hasilnya baik. Pertahankan ritme ini.':'Kecepatan mengerjakanmu sudah wajar. Tingkatkan ketepatan dengan memperbanyak latihan soal.';
+  return hi?'Hasilmu tepat, tetapi waktu pengerjaan masih lama. Latih kecepatan dengan membatasi waktu tiap soal.':'Waktu pengerjaan masih lama dan hasilnya belum maksimal. Perkuat konsep dasar, lalu latih soal dengan batas waktu.';
+}
+function advice(r){
+  const w=r.rows.filter(x=>x.st!=='Benar');
+  return [w.length?`Topik yang perlu kamu pelajari lagi: ${jn(w.map(x=>`${x.t} (no. ${x.n})`))}. Ulangi contoh soal pada topik tersebut dan tulis langkah penyelesaiannya secara runut.`:'Semua soal terjawab benar. Pertahankan ketelitianmu dan coba soal yang lebih menantang.',speed(r)];
+}
+
+/* ---------- Tampilan ---------- */
+function typeset(el){const m=window.MathJax;if(m&&m.typesetPromise)m.typesetPromise([el]).catch(()=>{});else setTimeout(()=>typeset(el),300)}
+function show(id){['s1','s2','s3'].forEach(s=>$('#'+s).classList.toggle('hide',s!==id));window.scrollTo(0,0)}
+function navDraw(){$('#nav').innerHTML=Q.map((q,i)=>`<button class="nv ${isAns(q,ans[i])?'done':''} ${i===cur?'cur':''}" data-i="${i}" aria-label="Soal ${i+1}${isAns(q,ans[i])?', terjawab':''}">${i+1}</button>`).join('')}
+function render(){
+  const q=Q[cur],a=ans[cur],g=!!q.g;
+  let h=`<div class="qno">Soal ${cur+1} dari ${Q.length}</div><div class="qtext">${q.x}</div>`;
+  if(q.fig)h+=`<div class="fig">${q.fig}</div>`;
+  if(q.k==='num')h+=`<label class="f" for="nv">Jawabanmu</label><input id="nv" type="text" inputmode="text" autocomplete="off" placeholder="Ketik jawaban (angka)" value="${esc(a)}">`;
+  else if(q.k==='tf')h+=q.o.map((s,i)=>`<div class="tfr"><div>${s}</div><div class="seg"><label class="opt"><input type="radio" name="tf${i}" value="1" ${a[i]===true?'checked':''}>Benar</label><label class="opt"><input type="radio" name="tf${i}" value="0" ${a[i]===false?'checked':''}>Salah</label></div></div>`).join('');
+  else h+=`<div class="opts ${g?'g':''}">`+q.o.map((s,i)=>{const l=LT[i],on=q.k==='mc'?a===l:a.includes(l);
+    return `<label class="opt ${g?'gr':''} ${on?'on':''}"><input type="${q.k==='mc'?'radio':'checkbox'}" name="o" value="${l}" ${on?'checked':''}><b>${l}.</b><span>${s}</span></label>`}).join('')+'</div>';
+  $('#qbox').innerHTML=h;
+  $('#pv').disabled=cur===0;$('#nx').textContent=cur===Q.length-1?'Selesai':'Berikutnya';
+  navDraw();typeset($('#qbox'));
+}
+function go(i){cur=i;render();$('#nav').scrollIntoView({block:'nearest'})}
+$('#qbox').addEventListener('change',e=>{
+  const t=e.target,q=Q[cur];
+  if(q.k==='mc')ans[cur]=t.value;
+  else if(q.k==='multi')ans[cur]=[...$('#qbox').querySelectorAll('input:checked')].map(i=>i.value).sort();
+  else if(q.k==='tf')ans[cur][+t.name.slice(2)]=t.value==='1';
+  $('#qbox').querySelectorAll('.opts .opt').forEach(l=>l.classList.toggle('on',l.querySelector('input').checked));
+  navDraw();
+});
+$('#qbox').addEventListener('input',e=>{if(Q[cur].k==='num'){ans[cur]=e.target.value;navDraw()}});
+$('#nav').addEventListener('click',e=>{const b=e.target.closest('.nv');if(b)go(+b.dataset.i)});
+$('#pv').onclick=()=>cur>0&&go(cur-1);
+$('#nx').onclick=()=>cur<Q.length-1?go(cur+1):finish();
+
+$('#go').onclick=()=>{
+  const n=$('#nm').value.trim(),k=$('#kl').value.trim();
+  if(!n||!k){$('#er').textContent='Nama dan kelas wajib diisi.';return}
+  $('#er').textContent='';info={n,k};
+  ans=Q.map(q=>q.k==='multi'?[]:q.k==='num'?'':q.k==='tf'?[null,null,null]:null);
+  cur=0;t0=Date.now();$('#tm').textContent='00:00';
+  clearInterval(tick);tick=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);$('#tm').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000);
+  show('s2');render();
+};
+function finish(){
+  const e=Q.map((q,i)=>isAns(q,ans[i])?0:i+1).filter(Boolean);
+  if(!e.length)return submit();
+  $('#mt').textContent=`Masih ada ${e.length} soal yang belum dijawab (nomor ${e.join(', ')}). Kumpulkan sekarang?`;
+  $('#md').classList.remove('hide');
+}
+$('#mb').onclick=()=>$('#md').classList.add('hide');
+$('#my').onclick=()=>{$('#md').classList.add('hide');submit()};
+function submit(){
+  clearInterval(tick);res=compute();const r=res,n=esc(info.n);
+  $('#gr').textContent='';$('#gr').innerHTML=r.nilai>=80?`Selamat, ${n}! Hasilmu sangat membanggakan.`:r.nilai>=60?`Kerja bagus, ${n}! Kamu sudah berada di jalur yang tepat.`:`Terima kasih sudah berusaha, ${n}! Jangan menyerah, kamu pasti bisa lebih baik.`;
+  $('#sc').textContent=r.nilai;$('#sc').style.color=`rgb(${r.tier})`;
+  $('#st').innerHTML=`<span>Soal benar: <b>${r.b} dari ${Q.length}</b></span><span>Kurang tepat: <b>${r.kt}</b></span><span>Kosong: <b>${r.ko}</b></span><span>Waktu: <b>${fmt(r.el)}</b></span>`;
+  $('#cm').innerHTML=advice(r).map(s=>`<p>${esc(s)}</p>`).join('');
+  show('s3');
+}
+
+/* ---------- Laporan PDF ---------- */
+function fit(doc,s,w){if(doc.getTextWidth(s)<=w)return s;while(s.length>1&&doc.getTextWidth(s+'...')>w)s=s.slice(0,-1);return s+'...'}
+function buildPdf(r){
+  const {jsPDF}=window.jspdf,doc=new jsPDF({unit:'mm',format:'a4'}),ink=[20,38,63],tc=r.tier;
+  const G=o=>doc.setGState(new doc.GState({opacity:o}));
+  doc.setFillColor(11,58,140);doc.rect(0,0,210,38,'F');
+  G(.13);doc.setFillColor(255,255,255);doc.circle(192,8,22,'F');doc.circle(168,36,12,'F');doc.circle(118,0,9,'F');G(1);
+  doc.setDrawColor(125,170,255);doc.setLineWidth(.6);
+  let px=128,py=30;for(let i=1;i<=62;i++){const x=128+i*1.3,y=30-4*Math.sin(i/62*Math.PI*4);doc.line(px,py,x,y);px=x;py=y}
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(22);doc.text('LAPORAN HASIL TRY OUT',12,17);
+  doc.setFont('helvetica','normal');doc.setFontSize(13);doc.text(TITLE,12,27);
+  doc.setFillColor(250,204,21);doc.rect(12,31,40,1.2,'F');
+  // kartu identitas
+  doc.setFillColor(240,246,255);doc.setDrawColor(29,78,216);doc.setLineWidth(.5);doc.roundedRect(10,42,190,42,3,3,'FD');
+  const tgl=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  doc.setFontSize(18);
+  [['Nama',info.n],['Kelas',info.k],['Tanggal',tgl],['Durasi',fmt(r.el)]].forEach(([l,v],i)=>{
+    const y=52+i*9;doc.setFont('helvetica','bold');doc.setTextColor(11,58,140);doc.text(l,15,y);
+    doc.setFont('helvetica','normal');doc.setTextColor(...ink);doc.text(fit(doc,': '+v,142),43,y)});
+  // lingkaran nilai
+  doc.setFillColor(...tc);doc.circle(36,105,19,'F');doc.setDrawColor(255,255,255);doc.setLineWidth(1);doc.circle(36,105,16.2,'S');
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text('NILAI',36,96.5,{align:'center'});
+  doc.setFontSize(32.5);doc.text(String(r.nilai),36,111,{align:'center'});
+  // kotak jumlah
+  [['Benar',r.b,[21,128,61],[220,252,231]],['Kurang Tepat',r.kt,[185,28,28],[254,226,226]],['Kosong',r.ko,[100,116,139],[232,236,241]]].forEach(([l,v,c,bg],i)=>{
+    const x=62+i*47.5;doc.setFillColor(...bg);doc.setDrawColor(...c);doc.setLineWidth(.6);doc.roundedRect(x,90,43,30,3,3,'FD');
+    doc.setTextColor(...c);doc.setFont('helvetica','bold');doc.setFontSize(26);doc.text(String(v),x+21.5,104,{align:'center'});
+    doc.setFontSize(13);doc.text(l,x+21.5,115,{align:'center'})});
+  // bilah ketepatan
+  doc.setTextColor(...ink);doc.setFontSize(13);doc.setFont('helvetica','bold');doc.text(`Ketepatan: ${r.nilai}%`,10,133);
+  doc.setTextColor(...tc);doc.text(`Predikat: ${r.pred}`,200,133,{align:'right'});
+  doc.setFillColor(222,230,243);doc.roundedRect(10,136.5,190,5,2.5,2.5,'F');
+  if(r.nilai>0){doc.setFillColor(...tc);doc.roundedRect(10,136.5,Math.max(5,1.9*r.nilai),5,2.5,2.5,'F')}
+  // peta penguasaan
+  doc.setTextColor(...ink);doc.setFontSize(13);doc.text('Peta Penguasaan',10,151);
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(81,99,125);doc.text('Hijau: benar   Merah: kurang tepat   Abu-abu: kosong',200,151,{align:'right'});
+  r.rows.forEach((w,i)=>{const x=10+i*19.55,c=w.st==='Benar'?[21,128,61]:w.st==='Kosong'?[148,163,184]:[185,28,28];
+    doc.setFillColor(...c);doc.roundedRect(x,155,14,14,2,2,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(String(w.n),x+7,164.6,{align:'center'})});
+  // tabel
+  const cx=[10,22,100,162],cw=[12,78,62,38],y0=174,rh=6.2;
+  doc.setFillColor(11,58,140);doc.rect(10,y0,190,rh,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(11);
+  ['No','Topik','Jawabanmu','Hasil'].forEach((h,i)=>doc.text(h,cx[i]+2,y0+4.4));
+  r.rows.forEach((w,i)=>{const y=y0+rh*(i+1);if(i%2===0){doc.setFillColor(240,246,255);doc.rect(10,y,190,rh,'F')}
+    doc.setFont('helvetica','normal');doc.setTextColor(...ink);
+    [String(w.n),w.t,w.a].forEach((v,j)=>doc.text(fit(doc,v,cw[j]-3),cx[j]+2,y+4.4));
+    doc.setFont('helvetica','bold');doc.setTextColor(...(w.st==='Benar'?[21,128,61]:w.st==='Kosong'?[100,116,139]:[185,28,28]));doc.text(w.st,cx[3]+2,y+4.4)});
+  doc.setDrawColor(198,216,245);doc.setLineWidth(.3);doc.rect(10,y0,190,rh*11);
+  // saran
+  doc.setFillColor(255,251,235);doc.setDrawColor(217,119,6);doc.setLineWidth(.5);doc.roundedRect(10,246,190,36,3,3,'FD');
+  doc.setTextColor(146,64,14);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text('Saran dan Masukan',14,253);
+  const wk=r.rows.filter(x=>x.st!=='Benar').map(x=>x.t);
+  const sp=speed(r).split('. ')[0].replace(/\.$/,'')+'.';
+  const adv=(wk.length?`Pelajari lagi: ${wk.slice(0,4).join(', ')}${wk.length>4?', dan lainnya':''}. `:'Semua soal benar, pertahankan! ')+sp;
+  doc.setFont('helvetica','normal');doc.setTextColor(...ink);doc.text(doc.splitTextToSize(adv,182).slice(0,4),14,259.5,{lineHeightFactor:1.15});
+  // footer
+  doc.setDrawColor(11,58,140);doc.setLineWidth(.4);doc.line(10,286,200,286);
+  doc.setFontSize(10);doc.setTextColor(81,99,125);doc.text(`Dibuat oleh ${MAKER}  |  ${TITLE}`,105,291.5,{align:'center'});
+  return doc;
+}
+$('#pdf').onclick=async()=>{
+  const pe=$('#pe');
+  if(!window.jspdf){pe.textContent='Pustaka PDF belum termuat. Periksa koneksi internet lalu coba lagi.';return}
+  try{
+    const doc=buildPdf(res),fn='Laporan_TryOut1_'+info.n.replace(/[^\w]+/g,'_')+'.pdf',blob=doc.output('blob'),url=URL.createObjectURL(blob);
+    pe.innerHTML=`Laporan siap. Jika unduhan tidak mulai, <a href="${url}" download="${esc(fn)}">ketuk tautan ini</a>.`;
+    let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null}catch(e){}
+    if(dl&&dl.save){try{await dl.save({filename:fn,data:blob})}catch(e){}}else doc.save(fn);
+  }catch(e){pe.textContent='Laporan gagal dibuat. Coba lagi.'}
+};
+</script>
+</body>
+</html>
